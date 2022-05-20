@@ -3,7 +3,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 
-const ModalNewItem = ({ open, handleClose}) => {
+const ModalItem = ({ open, handleClose }) => {
     const dispatch = useDispatch()
 
     const validationSchema = (values) => {
@@ -13,9 +13,6 @@ const ModalNewItem = ({ open, handleClose}) => {
             const isEmpty = values[field].toString().trim() === ''
             if(isEmpty) errors[field] = '* Required'
         }
-        // const regexNum = new RegExp('[0-9]')
-        // if(!regexNum.test(price) || price != '') errors.price = 'Accept Only Numbers'
-
         return errors
     }
 
@@ -92,4 +89,4 @@ const ModalNewItem = ({ open, handleClose}) => {
     )
 }
 
-export default ModalNewItem
+export default ModalItem

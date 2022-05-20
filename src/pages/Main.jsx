@@ -4,13 +4,13 @@ import { blueGrey } from '@mui/material/colors';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ModalNewItem from "../components/ModalNewItem";
+import ModalItem from "../components/ModalItem";
 import { useSelector } from "react-redux";
 import Item from "../components/Item";
 
 const Main = () => {
 
-    const [ openModalNewItem, setOpenModalNewItem ] = useState(false)
+    const [ openModalItem, setOpenModalItem ] = useState(false)
 
     const listItems = useSelector((state) => state)
 
@@ -41,7 +41,7 @@ const Main = () => {
                     <Button variant="contained" startIcon={<SettingsIcon />} sx={buttonsStyle}>
                         Config
                     </Button>
-                    <Button variant="contained" startIcon={<AddCircleIcon />} sx={buttonsStyle} onClick={() => setOpenModalNewItem(true)}>
+                    <Button variant="contained" startIcon={<AddCircleIcon />} sx={buttonsStyle} onClick={() => setOpenModalItem(true)}>
                         New Item
                     </Button>
                 </Stack>
@@ -53,7 +53,10 @@ const Main = () => {
                     }
                 </List>
             </Box>
-            <ModalNewItem open={openModalNewItem} handleClose={() => setOpenModalNewItem(false)}/>
+            <ModalItem
+            open={openModalItem}
+            handleClose={() => setOpenModalItem(false)}
+            />
         </div>
     )
 }
