@@ -1,9 +1,13 @@
-import './App.css'
+import './App.css';
+import Main from './pages/Main';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 function App() {
   return (
-    <div>
-        asdf
-    </div>
+    <Provider store={store}>
+        <Main/>
+    </Provider>
   );
 }
 

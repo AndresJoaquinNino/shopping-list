@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -5,7 +7,12 @@
 }
 body{
     padding: 1em;
-    background-color: #e2e2e2;
+    background-color: #e7ebf0;
+    color: #1976d2;
+    font-family: 'Ubuntu Mono', monospace;
+}
+.wrapper{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
