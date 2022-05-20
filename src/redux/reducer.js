@@ -1,13 +1,14 @@
 const getDefaultValue = (key) => {
     try{
         const item = localStorage.getItem(key)
-        return JSON.parse(item)
+        const defaultValue = JSON.parse(item)
+        return defaultValue
     }catch(error){
         return []
     }
 }
 
-const defaultValue = getDefaultValue('listItems')
+const defaultValue = getDefaultValue('listItems') ?? []
 
 const reducer = ( state = defaultValue, action) => {
     switch(action.type){
