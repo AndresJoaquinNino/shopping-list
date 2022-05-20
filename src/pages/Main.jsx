@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Divider ,Box, Stack, Typography, Button, List, ListItemButton, ListItemText } from "@mui/material"
+import { Divider ,Box, Stack, Typography, Button, List } from "@mui/material"
 import { blueGrey } from '@mui/material/colors';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ModalNewItem from "../components/ModalNewItem";
 import { useSelector } from "react-redux";
+import Item from "../components/Item";
 
 const Main = () => {
 
@@ -47,9 +48,7 @@ const Main = () => {
                 <List sx={{maxHeight : '10rem',overflow: 'auto',}}>
                     {
                         listItems.map((ele,index) => (
-                            <ListItemButton key={index}>
-                                <ListItemText primary={ele.name} />
-                            </ListItemButton>
+                            <Item key={index} dataItem={ele}/>
                         ))
                     }
                 </List>
