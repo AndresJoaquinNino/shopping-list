@@ -1,15 +1,9 @@
-import { getLocalStorage, } from "../helpers"
 import listReducer from "./listReducer"
+import { combineReducers } from "redux"
 
-const initialState = {
-    listItems : getLocalStorage('listItems') ?? []
-}
-
-const reducer = ( state = initialState, action ) =>{
-    return {
-        listItems : listReducer( state.listItems, action )
-    }
-}
+const reducer = combineReducers({
+    listItems : listReducer
+})
 
 
 export default reducer
