@@ -12,7 +12,7 @@ const Main = () => {
 
     const [ openModalItem, setOpenModalItem ] = useState(false)
 
-    const listItems = useSelector((state) => state)
+    const listItems = useSelector((state) => state.listItems)
 
     const mainBoxStyle = {
         width : '100%',
