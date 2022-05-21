@@ -1,7 +1,7 @@
-import { setLocalStorage, createUuid } from "../helpers"
+import { getLocalStorage, setLocalStorage, createUuid } from "../helpers"
 
 
-const initialState = []
+const initialState = getLocalStorage('listItems') ?? []
 
 const listReducer = ( state = initialState, action ) => {
     switch(action.type){
