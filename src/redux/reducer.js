@@ -1,8 +1,10 @@
 import listReducer from "./listReducer"
+import modalReducer from "./modalReducer"
 import { combineReducers } from "redux"
 
 const reducer = combineReducers({
-    listItems : listReducer
+    listItems : listReducer,
+    modalItems : modalReducer
 })
 
 
