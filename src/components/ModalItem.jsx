@@ -1,9 +1,14 @@
 import { Modal, Box, Typography, TextField, FormControl, InputLabel, Select, FormHelperText, MenuItem, Button } from "@mui/material"
 import SaveIcon from '@mui/icons-material/Save';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 
-const ModalItem = ({ open, handleClose }) => {
+const ModalItem = () => {
+
+    const isOpen = useSelector((state) => state.modalItems.isOpen)
+
+    const handleClose = () => dispatch({type:'modal/isOpen', payload: false})
+
     const dispatch = useDispatch()
 
     const validationSchema = (values) => {
@@ -59,7 +64,7 @@ const ModalItem = ({ open, handleClose }) => {
     }
 
     return(
-        <Modal open={open} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
+        <Modal open={isOpen} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
             <Box component='form' sx={boxStyle} onSubmit={formik.handleSubmit}>
                 <Typography variant="h4" component="h4" fontWeight='bold' align="center" marginBottom={3}>
                     New Item
