@@ -5,15 +5,14 @@ import { useFormik } from "formik";
 
 const ModalItem = () => {
 
+    const dispatch = useDispatch()
+
     const isOpen = useSelector((state) => state.modalItems.isOpen)
 
     const handleClose = () => dispatch({type:'modal/isOpen', payload: false})
 
-    const dispatch = useDispatch()
-
     const validationSchema = (values) => {
         const errors = {}
-
         for (const field in values){
             const isEmpty = values[field].toString().trim() === ''
             if(isEmpty) errors[field] = '* Required'
@@ -34,23 +33,6 @@ const ModalItem = () => {
         },
     })
 
-    const boxStyle = {
-        width : '100%',
-        maxWidth : '450px',
-        bgcolor:'#fff',
-        borderRadius: 1,
-        paddingY: 2,
-        paddingX: 3,
-        display:'flex',
-        flexDirection:'column',
-        alignItems:'center'
-    }
-
-    const fieldStyle = {
-        height : '5rem',
-        width: '100%'
-    }
-
     const fieldProps = (label, fieldName) => {
         const result = {
             ...formik.getFieldProps(fieldName),
@@ -58,19 +40,19 @@ const ModalItem = () => {
             label : label,
             helperText : formik.errors[fieldName],
             error : formik.errors[fieldName] ? true : false,
-            sx: fieldStyle
+            className: 'field-container'
         }
         return result
     }
 
     return(
         <Modal open={isOpen} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
-            <Box component='form' sx={boxStyle} onSubmit={formik.handleSubmit}>
+            <Box component='form' className="box-modal" onSubmit={formik.handleSubmit}>
                 <Typography variant="h4" component="h4" fontWeight='bold' align="center" marginBottom={3}>
                     New Item
                 </Typography>
                 <TextField {...fieldProps('Name','name')}/>
-                <FormControl variant="standard" sx = {fieldStyle} error = { formik.errors['currency'] ? true : false}>
+                <FormControl variant="standard" className="field-container" error = { formik.errors['currency'] ? true : false}>
                     <InputLabel id="currency-label"> Currency </InputLabel>
                     <Select
                     labelId="currency-label"
