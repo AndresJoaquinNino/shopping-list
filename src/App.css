@@ -17,3 +17,18 @@ body{
     justify-content: center;
     align-items: center;
 }
+.box-modal{
+    width: 100%;
+    max-width: 450px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field-container{
+    height: 5rem;
+    width: 100%;
+}
