@@ -4,8 +4,9 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ModalItem from "../components/ModalItem";
-import { useDispatch, useSelector } from "react-redux";
+import ModalEditItem from "../components/ModalEditItem";
 import Item from "../components/Item";
+import { useDispatch, useSelector } from "react-redux";
 
 const Main = () => {
 
@@ -41,7 +42,7 @@ const Main = () => {
                         Config
                     </Button>
                     <Button variant="contained" startIcon={<AddCircleIcon />} sx={buttonsStyle}
-                    onClick={() => dispatch({type:'modal/isOpen', payload: true})}>
+                    onClick={() => dispatch({type:'modalItem/isOpen', payload: true})}>
                         New Item
                     </Button>
                 </Stack>
@@ -49,11 +50,12 @@ const Main = () => {
                     {
                         listItems.map((ele,index) => (
                             <Item key={index} dataItem={ele}/>
-                        ))
-                    }
+                            ))
+                        }
                 </List>
             </Box>
             <ModalItem/>
+            {/* <ModalEditItem/> */}
         </div>
     )
 }

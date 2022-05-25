@@ -1,15 +1,15 @@
 import { Modal, Box, Typography, TextField, FormControl, InputLabel, Select, FormHelperText, MenuItem, Button } from "@mui/material"
-import SaveIcon from '@mui/icons-material/Save';
+import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 
-const ModalItem = () => {
+const ModalEditItem = () => {
 
     const dispatch = useDispatch()
 
-    const isOpen = useSelector((state) => state.layout.isOpenModalItem)
+    const handleClose = () => {
 
-    const handleClose = () => dispatch({type:'modalItem/isOpen', payload: false})
+    }
 
     const validationSchema = (values) => {
         const errors = {}
@@ -22,7 +22,6 @@ const ModalItem = () => {
 
     const formik = useFormik({
         initialValues : {
-            name: '',
             currency: '',
             price: '',
         },
@@ -46,12 +45,8 @@ const ModalItem = () => {
     }
 
     return(
-        <Modal open={isOpen} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
-            <Box component='form' className="box-modal" onSubmit={formik.handleSubmit}>
-                <Typography variant="h4" component="h4" fontWeight='bold' align="center" marginBottom={3}>
-                    New Item
-                </Typography>
-                <TextField {...fieldProps('Name','name')}/>
+        <Modal open={true} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
+            <Box component='form' className="box-modal">
                 <FormControl variant="standard" className="field-container" error = { formik.errors['currency'] ? true : false}>
                     <InputLabel id="currency-label"> Currency </InputLabel>
                     <Select
@@ -67,13 +62,12 @@ const ModalItem = () => {
                 <Button
                 type="submit"
                 variant="contained"
-                startIcon={<SaveIcon/>}
+                startIcon={<EditIcon/>}
                 sx={{width:'50%'}}>
-                    Save Item
+                    EDIT ITEM
                 </Button>
             </Box>
         </Modal>
     )
 }
-
-export default ModalItem
+export default ModalEditItem
