@@ -3,9 +3,10 @@ const initialState = {
     modalEdit : {
         isOpen : false,
         editTo : {
+            id : 0,
             name : '',
             currency : '',
-            price : ''
+            price : 0
         }
     }
 }
@@ -18,6 +19,15 @@ const layputReducer = ( state = initialState, action ) => {
         case 'modalEdit/isOpen' : {
             const newModalEdit = state.modalEdit
             newModalEdit.isOpen = action.payload
+            return { ...state, modalEdit : newModalEdit }
+
+        }
+        case 'modalEdit/editTo' : {
+            const valuesToEdit = action.payload
+            const newModalEdit = {
+                isOpen : true,
+                editTo : valuesToEdit
+            }
             return { ...state, modalEdit : newModalEdit }
 
         }
