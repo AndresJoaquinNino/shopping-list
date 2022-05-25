@@ -8,7 +8,7 @@ const Item = ({ dataItem }) => {
 
     const dispatch = useDispatch()
 
-    const openEditModal = () => dispatch({type: 'modalEdit/isOpen', payload : true})
+    const openEditModal = () => dispatch({type: 'modalEdit/editTo', payload : dataItem})
 
     const deleteItem = () => dispatch({type:'list/delete', payload : id})
 
