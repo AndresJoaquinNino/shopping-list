@@ -9,6 +9,8 @@ const ModalEditItem = () => {
 
     const isOpen =  useSelector(({ layout }) => (layout.modalEdit.isOpen))
 
+    const defaultValues = useSelector(({ layout }) => (layout.modalEdit.editTo))
+
     const handleClose = () => dispatch({type: 'modalEdit/isOpen', payload : false})
 
     const validationSchema = (values) => {
@@ -21,14 +23,22 @@ const ModalEditItem = () => {
     }
 
     const formik = useFormik({
+        enableReinitialize : true,
         initialValues : {
-            currency: '',
-            price: '',
+            currency: defaultValues.currency,
+            price: defaultValues.price,
         },
         validate: validationSchema,
         onSubmit: (values, { resetForm }) => {
-            dispatch({type:'list/add',payload:values})
+            const { currency : newCurrency, price : newPrice } = values
+            const valuesToEdit = {
+                ...defaultValues,
+                currency : newCurrency,
+                price : newPrice
+            }
+            dispatch({type: 'list/edit', payload : valuesToEdit})
             resetForm()
+            handleClose()
         },
     })
 
@@ -46,8 +56,11 @@ const ModalEditItem = () => {
 
     return(
         <Modal open={isOpen} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
-            <Box component='form' className="box-modal">
-                <FormControl variant="standard" className="field-container" error = { formik.errors['currency'] ? true : false}>
+            <Box component='form' className="box-modal" onSubmit={formik.handleSubmit}>
+                <FormControl
+                variant="standard"
+                className="field-container"
+                error = { formik.errors['currency'] ? true : false}>
                     <InputLabel id="currency-label"> Currency </InputLabel>
                     <Select
                     labelId="currency-label"
