@@ -55,7 +55,7 @@ const Main = () => {
                 </List>
             </Box>
             <ModalItem/>
-            {/* <ModalEditItem/> */}
+            <ModalEditItem/>
         </div>
     )
 }
