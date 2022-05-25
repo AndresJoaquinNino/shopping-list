@@ -1,4 +1,4 @@
-import { Modal, Box, Typography, TextField, FormControl, InputLabel, Select, FormHelperText, MenuItem, Button } from "@mui/material"
+import { Modal, Box, TextField, FormControl, InputLabel, Select, FormHelperText, MenuItem, Button } from "@mui/material"
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
@@ -7,9 +7,9 @@ const ModalEditItem = () => {
 
     const dispatch = useDispatch()
 
-    const handleClose = () => {
+    const isOpen =  useSelector(({ layout }) => (layout.modalEdit.isOpen))
 
-    }
+    const handleClose = () => dispatch({type: 'modalEdit/isOpen', payload : false})
 
     const validationSchema = (values) => {
         const errors = {}
@@ -45,7 +45,7 @@ const ModalEditItem = () => {
     }
 
     return(
-        <Modal open={true} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
+        <Modal open={isOpen} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
             <Box component='form' className="box-modal">
                 <FormControl variant="standard" className="field-container" error = { formik.errors['currency'] ? true : false}>
                     <InputLabel id="currency-label"> Currency </InputLabel>

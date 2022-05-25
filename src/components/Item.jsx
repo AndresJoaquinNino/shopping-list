@@ -8,15 +8,15 @@ const Item = ({ dataItem }) => {
 
     const dispatch = useDispatch()
 
-    const deleteItem = () => {
-        dispatch({type:'list/delete', payload : id})
-    }
+    const openEditModal = () => dispatch({type: 'modalEdit/isOpen', payload : true})
+
+    const deleteItem = () => dispatch({type:'list/delete', payload : id})
 
     return (
         <ListItem
         secondaryAction={
             <Stack direction='row' spacing={1}>
-                <IconButton edge="end" aria-label="delete">
+                <IconButton edge="end" aria-label="delete" onClick={openEditModal}>
                     <EditIcon />
                 </IconButton>
                 <IconButton edge="end" aria-label="delete" onClick={deleteItem}>
