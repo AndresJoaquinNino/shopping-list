@@ -1,13 +1,18 @@
 import { Modal, Box, Typography, TextField, InputAdornment, Stack, Button } from "@mui/material"
 import SaveIcon from '@mui/icons-material/Save';
 import { grey } from "@mui/material/colors";
+import { useDispatch, useSelector } from "react-redux";
 
 const ModalConfig = () => {
 
-    const handleClose = () => {}
+    const dispatch = useDispatch()
+
+    const isOpen = useSelector(({ layout }) => layout.modalConfig.isOpen)
+
+    const handleClose = () => dispatch({type:'modalConfig/isOpen', payload: false})
 
     return(
-        <Modal open={true} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
+        <Modal open={isOpen} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
             <Box className="box-modal">
                 <Typography variant="h4" component="h4" fontWeight='bold' align="center" marginBottom={3}>
                     Configs Setting
