@@ -9,6 +9,8 @@ const ModalConfig = () => {
 
     const isOpen = useSelector(({ layout }) => layout.modalConfig.isOpen)
 
+    const usdValue = useSelector(({ config }) => config.usdValue)
+
     const handleClose = () => dispatch({type:'modalConfig/isOpen', payload: false})
 
     return(
@@ -36,7 +38,9 @@ const ModalConfig = () => {
                         =
                     </Typography>
                     <TextField
-                    variant="standard"hhg
+                    variant="standard"
+                    type='number'
+                    value={usdValue}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="start">
