@@ -14,6 +14,16 @@ const Main = () => {
 
     const listItems = useSelector((state) => state.listItems)
 
+    const [totalVES, totalUSD] = useSelector((state) => {
+        const { listItems, config } = state
+        const { usdValue } = config
+        const sumVES = listItems.reduce((acc,ele) => ele.currency === 'VES' ? acc + ele.price : acc, 0)
+        const sumUSD = listItems.reduce((acc,ele) => ele.currency === 'USD' ? acc + ele.price : acc, 0)
+        const totalVES = sumVES + (sumUSD * usdValue)
+        const totalUSD = sumUSD + (sumVES /  usdValue)
+        return [totalVES.toFixed(2), totalUSD.toFixed(2)]
+    })
+
     const buttonsStyle = {
         width:'10em',
     }
@@ -38,13 +48,20 @@ const Main = () => {
                         New Item
                     </Button>
                 </Stack>
-                <List sx={{maxHeight : '10rem',overflow: 'auto',}}>
+                <List sx={{maxHeight : '10rem',overflow: 'auto',marginBottom: 1}}>
                     {
                         listItems.map((ele,index) => (
                             <Item key={index} dataItem={ele}/>
                             ))
                         }
                 </List>
+                <Divider sx={{marginBottom:2}}/>
+                <Typography variant="h6" component="span" fontWeight='bold'>
+                    Total : { ' ' }
+                </Typography>
+                <Typography variant="h6" component="span" color='#000'>
+                    { totalVES }VES - { totalUSD }USD
+                </Typography>
             </Box>
             <ModalItem/>
             <ModalEditItem/>
