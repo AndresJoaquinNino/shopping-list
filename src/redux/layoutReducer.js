@@ -8,6 +8,9 @@ const initialState = {
             currency : '',
             price : 0
         }
+    },
+    modalConfig : {
+        isOpen : false
     }
 }
 
@@ -15,6 +18,11 @@ const layputReducer = ( state = initialState, action ) => {
     switch(action.type){
         case 'modalItem/isOpen' : {
             return { ...state, isOpenModalItem : action.payload }
+        }
+        case 'modalConfig/isOpen' : {
+            const newModalConfig = state.modalConfig
+            newModalConfig.isOpen = action.payload
+            return { ...state, modalConfig : newModalConfig }
         }
         case 'modalEdit/isOpen' : {
             const newModalEdit = state.modalEdit
