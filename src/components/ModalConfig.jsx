@@ -6,16 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 const ModalConfig = () => {
 
     const dispatch = useDispatch()
-
     const isOpen = useSelector(({ layout }) => layout.modalConfig.isOpen)
-
     const usdValue = useSelector(({ config }) => config.usdValue)
-
     const handleClose = () => dispatch({type:'modalConfig/isOpen', payload: false})
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const { target } = event
+        const inputUsdValue = parseInt(target.usdValue.value, 10)
+        dispatch({type:'config/usdValue', payload: inputUsdValue})
+        handleClose()
+    }
 
     return(
         <Modal open={isOpen} onClose={handleClose} sx={{padding:2,display:'grid',placeItems:'center'}}>
-            <Box className="box-modal">
+            <Box className="box-modal" component='form' onSubmit={handleSubmit}>
                 <Typography variant="h4" component="h4" fontWeight='bold' align="center" marginBottom={3}>
                     Configs Setting
                 </Typography>
@@ -40,11 +45,12 @@ const ModalConfig = () => {
                     <TextField
                     variant="standard"
                     type='number'
-                    value={usdValue}
+                    name="usdValue"
+                    defaultValue={usdValue}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="start">
-                                USD
+                                VES
                             </InputAdornment>
                         ),
                     }}
