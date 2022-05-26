@@ -14,22 +14,13 @@ const Main = () => {
 
     const listItems = useSelector((state) => state.listItems)
 
-    const mainBoxStyle = {
-        width : '100%',
-        maxWidth:'400px',
-        border : 1,
-        borderColor: blueGrey[700],
-        borderRadius: 1,
-        padding : 3,
-    }
-
     const buttonsStyle = {
         width:'10em',
     }
 
     return(
         <div className="wrapper">
-            <Box sx={mainBoxStyle}>
+            <Box className="box-container">
                 <Typography variant="h4" component="h4" fontWeight='bold' marginBottom={2}>
                     <Stack direction='row' spacing={2} justifyContent='center' alignItems='center'>
                         <span> My Shopping List </span>
