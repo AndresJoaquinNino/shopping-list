@@ -14,6 +14,7 @@ const Item = ({ dataItem }) => {
 
     return (
         <ListItem
+        sx={{paddingX: 0}}
         secondaryAction={
             <Stack direction='row' spacing={1}>
                 <IconButton edge="end" aria-label="delete" onClick={openEditModal}>
